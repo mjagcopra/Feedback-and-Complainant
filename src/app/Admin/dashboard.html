@@ -1,0 +1,47 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <h1 class="navbar-title">System Dashboard</h1>
+    </div>
+    <ul class="navbar-links">
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/about">About</a></li>
+      <li><a routerLink="/services">Services</a></li>
+      <li><a routerLink="/feedback">Feedback</a></li>
+      <li><a routerLink="/contact">Contact</a></li>
+    </ul>
+    <div class="navbar-icons">
+      <button class="icon-btn" (click)="onNotificationClick()" aria-label="Notifications">
+        🔔
+      </button>
+      <button class="icon-btn" (click)="onProfileClick()" aria-label="User Profile">
+        👤
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="dashboard-container">
+  <div class="complaint-card">
+    <h2 class="section-title">Student Complaint</h2>
+    <div class="complaints-list">
+      <div class="complaint-item" *ngFor="let complaint of complaints">
+        <div class="complaint-header">
+          <h3>Complaint #{{ complaint.id }}</h3>
+          <span class="status-badge" [ngClass]="getStatusClass(complaint.status)">
+            {{ complaint.status }}
+          </span>
+        </div>
+        <div class="complaint-details">
+          <p *ngIf="complaint.studentName"><strong>Student Name:</strong> {{ complaint.studentName }}</p>
+          <p><strong>Department:</strong> {{ complaint.department }}</p>
+          <p><strong>Category:</strong> {{ complaint.category }}</p>
+          <p><strong>Description:</strong> {{ complaint.description }}</p>
+          <p><strong>Timestamp:</strong> {{ complaint.timestamp | date:'medium' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
